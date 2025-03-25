@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 
-def monte_carlo_var(initial_price, returns, confidence_level = 95, num_simulations = 10000):
+def monte_carlo_var(initial_price, returns, confidence_level = 95, num_simulations = 10000, return_all = False):
 
   mean_return = returns.mean()
 
@@ -20,5 +20,8 @@ def monte_carlo_var(initial_price, returns, confidence_level = 95, num_simulatio
   percentile = 100 - confidence_level
   var_mc = np.percentile(simulated_losses, percentile)
 
+  if return_all:
+    return var_mc, simulated_losses
+  
   return var_mc
 
