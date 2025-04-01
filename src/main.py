@@ -1,7 +1,11 @@
 from fetch_data import fetch_stock_data
 from historical_var import calculate_historical_var
 from monte_carlo_var import monte_carlo_var
+from create_dataset import create_var_breach_dataset
+from train_model import train_model
+
 import matplotlib.pyplot as plt
+import tensorflow as tf
 
 
 tickers = ["GOOG"]
@@ -33,3 +37,10 @@ plt.legend()
 plt.grid(True)
 plt.tight_layout()
 plt.show()
+
+X, y = create_var_breach_dataset(returns["GOOG"], var_threshold= historical_var)
+
+train_model(X, y)
+
+
+
